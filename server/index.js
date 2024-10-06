@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.post("/events1", async (req, res) => {
   const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  console.log({ title, subtitle, date, authorName, content, addedPhotos });     
   const eveDoc = await eventModel.create({
     title, subtitle, date, authorName, content, addedPhotos
   });
@@ -46,7 +47,7 @@ app.post("/upload-by-link", async (req, res) => {
 
 const upload = multer({ dest: 'uploads/' });
 
-app.post("/uploads", upload.array('photo', 100), (req, res) => {
+app.post("/uploads", upload.array('photo', 100),async(req, res) => {
   const upfiles = [];
   req.files.forEach(file => {
     const { path, originalname } = file;
@@ -58,13 +59,6 @@ app.post("/uploads", upload.array('photo', 100), (req, res) => {
   });
   res.json(upfiles);
 });
-
-try {
-  const eveDoc = await eventModel.create();
-  res.status(201).send(eveDoc);
-} catch (error) {
-  res.status(500).send({ error: 'Error creating event' });
-}
 
 app.listen(5000, () => {
   console.log("server is listening...");

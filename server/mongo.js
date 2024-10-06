@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 require('dotenv').config();
 
-mongoose.connect("mongodb+srv://aatmkanaiyali:ramana123@kanaiyali.ziyps.mongodb.net/?retryWrites=true&w=majority&appName=Kanaiyali").then(()=>{
+mongoose.connect(/*put ur mongo url here*/).then(()=>{
     console.log('database connected...');
 }).catch((err)=>{
     console.log(err)
@@ -26,7 +26,7 @@ const oviyamSchema = new mongoose.Schema({
     addedPhotos: [String],
 })
 
-const eventModel=mongoose.model("event",eventSchema);
-const oviyamModel = mongoose.model("oviyam", oviyamSchema);
+const eventModel=mongoose.model('event',eventSchema);
+const oviyamModel = mongoose.model('oviyam', oviyamSchema);
 
 module.exports = { eventModel, oviyamModel };

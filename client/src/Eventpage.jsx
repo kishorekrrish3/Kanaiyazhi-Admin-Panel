@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaFile } from 'react-icons/fa6';
 
 const Eventpage = () => {
-  const [pageType, setPageType] = useState('eventModel'); 
+  const [pageType, setPageType] = useState('event'); 
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [date, setDate] = useState("");
@@ -41,7 +41,7 @@ const Eventpage = () => {
   const addeventModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post("http://localhost:5000/eventModel", data).then(() => {
+    await axios.post("http://localhost:5000/events1", data).then(() => {
       alert("Event added to eventModel. Thank you!");
       resetForm();
     });
@@ -50,7 +50,7 @@ const Eventpage = () => {
   const addOviyamModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post("http://localhost:5000/oviyamModel", data).then(() => {
+    await axios.post("http://localhost:5000/oviyam", data).then(() => {
       alert("Event added to oviyamModel. Thank you!");
       resetForm();
     });
@@ -77,29 +77,29 @@ const Eventpage = () => {
           onChange={handleModelChange} 
           className='border-solid border-2 border-gray-500 px-4 py-2 rounded-xl w-full'
         >
-          <option value="eventModel">Event Page</option>
-          <option value="oviyamModel">Oviyam Page</option>
+          <option value="event">Event Page</option>
+          <option value="oviyam">Oviyam Page</option>
         </select>
       </div>
 
-      {pageType === 'eventModel' ? (
+      {pageType === 'event' ? (
         <form className='mt-10 h-auto border-solid border-2 border-sky-500 rounded-2xl flex flex-col justify-center items-center gap-6 p-10 w-8/12' onSubmit={addeventModel}>
-          <input type='text' placeholder='Enter the Title' className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setTitle(ev.target.value)} />
-          <input type='text' placeholder='Enter the SubTitle' className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setSubtitle(ev.target.value)} />
-          <input type='date' placeholder='Enter the event date' className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setDate(ev.target.value)} />
-          <input type='text' placeholder='Enter the Author Name' className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setAuthorName(ev.target.value)} />
-          <textarea placeholder='Enter the Content' className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' rows="10" onChange={(ev) => setContent(ev.target.value)} />
+          <input type='text' placeholder='Enter the Title' value={title} className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setTitle(ev.target.value)} />
+          <input type='text' placeholder='Enter the SubTitle' value={subtitle} className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setSubtitle(ev.target.value)} />
+          <input type='date' placeholder='Enter the event date' value={date} className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setDate(ev.target.value)} />
+          <input type='text' placeholder='Enter the Author Name' value={authorName} className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setAuthorName(ev.target.value)} />
+          <textarea placeholder='Enter the Content' value={content} className='border-solid border-2 border-sky-500 w-9/12 px-2 py-2 rounded-xl' rows="10" onChange={(ev) => setContent(ev.target.value)} />
           <input type='submit' className='bg-blue-600 w-96 p-2 rounded-xl cursor-pointer text-white' />
         </form>
-      ) : (
-        <form className='mt-10 h-auto border-solid border-2 border-green-500 rounded-2xl flex flex-col justify-center items-center gap-6 p-10 w-8/12' onSubmit={addOviyamModel}>
-          <input type='text' placeholder='Enter the Title' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setTitle(ev.target.value)} />
-          <input type='text' placeholder='Enter the SubTitle' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setSubtitle(ev.target.value)} />
-          <input type='date' placeholder='Enter the event date' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setDate(ev.target.value)} />
-          <input type='text' placeholder='Enter the Author Name' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setAuthorName(ev.target.value)} />
-          <textarea placeholder='Enter the Content' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' rows="10" onChange={(ev) => setContent(ev.target.value)} />
-          <input type='submit' className='bg-green-600 w-96 p-2 rounded-xl cursor-pointer text-white' />
-        </form>
+        ) : (
+          <form className='mt-10 h-auto border-solid border-2 border-green-500 rounded-2xl flex flex-col justify-center items-center gap-6 p-10 w-8/12' onSubmit={addOviyamModel}>
+            <input type='text' placeholder='Enter the Title' value={title} className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' onChange={(ev) => setTitle(ev.target.value)} />
+            <input type='text' placeholder='Enter the SubTitle' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' value={subtitle} onChange={(ev) => setSubtitle(ev.target.value)} />
+            <input type='date' placeholder='Enter the event date' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' value={date} onChange={(ev) => setDate(ev.target.value)} />
+            <input type='text' placeholder='Enter the Author Name' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' value={authorName} onChange={(ev) => setAuthorName(ev.target.value)} />
+            <textarea placeholder='Enter the Content' className='border-solid border-2 border-green-500 w-9/12 px-2 py-2 rounded-xl' rows="10" value={content} onChange={(ev) => setContent(ev.target.value)} />
+            <input type='submit' className='bg-green-600 w-96 p-2 rounded-xl cursor-pointer text-white' />
+          </form>
       )}
 
       {/* Photo Upload Section */}
