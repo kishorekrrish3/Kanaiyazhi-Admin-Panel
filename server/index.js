@@ -88,7 +88,11 @@ app.post("/upload-by-link", async (req, res) => {
 
 const upload = multer({ dest: 'uploads/' });
 
+<<<<<<< HEAD
 app.post("/uploads", upload.array('photo', 100),(req, res) => {
+=======
+app.post("/uploads", upload.array('photo', 100),async(req, res) => {
+>>>>>>> 43fe20eb7f4ee79321025c56b9579f0e12b0278d
   const upfiles = [];
   req.files.forEach(file => {
     const { path, originalname } = file;
