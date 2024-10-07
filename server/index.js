@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { eventModel, oviyamModel } = require('./mongo');
+const { eventModel, oviyamModel, sirukadhaiModel, puthagamModel, vasanamModel, vidukadhaiModel, naatkurippuModel } = require('./mongo');
 const imgdown = require('image-downloader');
 const multer = require('multer');
 const fs = require('fs');
@@ -17,10 +17,11 @@ app.get("/", (req, res) => {
   res.send("hi da");
 });
 
-app.post("/events1", async (req, res) => {
+app.post("/kavithai", async (req, res) => {
   const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  console.log({ title, subtitle, date, authorName, content, addedPhotos });     
   const eveDoc = await eventModel.create({
-    title, subtitle, date, authorName, content, addedPhotos
+    title, subtitle, date, authorName, content, photos:addedPhotos
   });
   res.send(eveDoc);
 });
@@ -28,7 +29,48 @@ app.post("/events1", async (req, res) => {
 app.post("/oviyam", async (req, res) => {
   const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
   const eveDoc = await oviyamModel.create({
-    title, subtitle, date, authorName, content, addedPhotos
+    title, subtitle, date, authorName, content, photos:addedPhotos
+  });
+  res.send(eveDoc);
+});
+
+app.post("/sirukadhai", async (req, res) => {
+  const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  const eveDoc = await sirukadhaiModel.create({
+    title, subtitle, date, authorName, content, photos:addedPhotos
+  });
+  res.send(eveDoc);
+});
+
+app.post("/puthaga-vimarsanam", async (req, res) => {
+  const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  console.log({ title, subtitle, date, authorName, content, addedPhotos });     
+  const eveDoc = await puthagamModel.create({
+    title, subtitle, date, authorName, content, photos:addedPhotos
+  });
+  res.send(eveDoc);
+});
+
+app.post("/vasanam", async (req, res) => {
+  const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  const eveDoc = await vasanamModel.create({
+    title, subtitle, date, authorName, content, photos:addedPhotos
+  });
+  res.send(eveDoc);
+});
+
+app.post("/vidukadhai", async (req, res) => {
+  const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  const eveDoc = await vidukadhaiModel.create({
+    title, subtitle, date, authorName, content, photos:addedPhotos
+  });
+  res.send(eveDoc);
+});
+
+app.post("/naatkurippu", async (req, res) => {
+  const { title, subtitle, date, authorName, content, addedPhotos } = req.body;
+  const eveDoc = await naatkurippuModel.create({
+    title, subtitle, date, authorName, content, photos:addedPhotos
   });
   res.send(eveDoc);
 });
@@ -46,7 +88,7 @@ app.post("/upload-by-link", async (req, res) => {
 
 const upload = multer({ dest: 'uploads/' });
 
-app.post("/uploads", upload.array('photo', 100), (req, res) => {
+app.post("/uploads", upload.array('photo', 100),(req, res) => {
   const upfiles = [];
   req.files.forEach(file => {
     const { path, originalname } = file;
@@ -58,13 +100,6 @@ app.post("/uploads", upload.array('photo', 100), (req, res) => {
   });
   res.json(upfiles);
 });
-
-try {
-  const eveDoc = await eventModel.create();
-  res.status(201).send(eveDoc);
-} catch (error) {
-  res.status(500).send({ error: 'Error creating event' });
-}
 
 app.listen(5000, () => {
   console.log("server is listening...");
