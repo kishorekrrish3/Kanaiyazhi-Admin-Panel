@@ -199,10 +199,7 @@ const Eventpage = () => {
           </form>
       ) : null}
 
-      <div className='w-full gap-2 flex justify-center'>
-        <input type='text' placeholder='Enter the link of the image' className='border-solid border-2 border-gray-500 w-8/12 px-2 py-2 rounded-xl' value={plink} onChange={(ev) => setPlink(ev.target.value)} />
-        <button className='bg-blue-600 text-white px-2 py-2 rounded-xl cursor-pointer' onClick={addpbylink}>Add Photo</button>
-      </div>
+      
       <div className='flex gap-5'>
         <div className='flex items-center gap-3'>
           {addedPhotos.length > 0 && addedPhotos.map(link => (
