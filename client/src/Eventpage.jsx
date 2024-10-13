@@ -24,13 +24,9 @@ const Eventpage = () => {
       data.append("photo", files[i]);
     }
     axios
-      .post(
-        `http://https://kanaiyazhi-admin-panel.onrender.com/uploads`,
-        data,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      )
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/uploads`, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
       .then((res) => {
         const { data: filenames } = res;
         setAddedphotos((prev) => {
@@ -43,7 +39,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/kavithai`, data)
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/kavithai`, data)
       .then(() => {
         alert("Content added to Kavithai. Thank you!");
         resetForm();
@@ -54,7 +50,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/oviyam`, data)
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/oviyam`, data)
       .then(() => {
         alert("Content added to Oviyam. Thank you!");
         resetForm();
@@ -65,10 +61,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(
-        `http://https://kanaiyazhi-admin-panel.onrender.com/sirukadhai`,
-        data
-      )
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/sirukadhai`, data)
       .then(() => {
         alert("Content added to Sirukadhai. Thank you!");
         resetForm();
@@ -80,7 +73,7 @@ const Eventpage = () => {
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
       .post(
-        `http://https://kanaiyazhi-admin-panel.onrender.com/puthaga-vimarsanam`,
+        `https://kanaiyazhi-admin-panel.onrender.com/puthaga-vimarsanam`,
         data
       )
       .then(() => {
@@ -93,7 +86,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/vasanam`, data)
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/vasanam`, data)
       .then(() => {
         alert("Content added to Vasanam. Thank you!");
         resetForm();
@@ -104,10 +97,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(
-        `http://https://kanaiyazhi-admin-panel.onrender.com/vidukadhai`,
-        data
-      )
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/vidukadhai`, data)
       .then(() => {
         alert("Content added to Vidukadhai. Thank you!");
         resetForm();
@@ -118,10 +108,7 @@ const Eventpage = () => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
     await axios
-      .post(
-        `http://https://kanaiyazhi-admin-panel.onrender.com/naatkurippu`,
-        data
-      )
+      .post(`https://kanaiyazhi-admin-panel.onrender.com/naatkurippu`, data)
       .then(() => {
         alert("Content added to Naatkurippu. Thank you!");
         resetForm();
@@ -485,7 +472,7 @@ const Eventpage = () => {
               <div key={link}>
                 <img
                   src={
-                    `http://https://kanaiyazhi-admin-panel.onrender.com/uploads/` +
+                    `https://kanaiyazhi-admin-panel.onrender.com/uploads/` +
                     link
                   }
                   alt=""
