@@ -19,7 +19,8 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.use(
   cors({
-    origin: "https://kanaiyazhi-admin-panel.onrender.com",
+    origin: "https://kanaiyazhi-admin-panel.vercel.app/",
+    credentials: true,
   })
 );
 
