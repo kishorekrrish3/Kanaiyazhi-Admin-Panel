@@ -12,20 +12,10 @@ const Eventpage = () => {
   const [addedPhotos, setAddedphotos] = useState([]);
   const [plink, setPlink] = useState("");
 
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_BACKEND_API_URL;
 
   const handleModelChange = (ev) => {
     setPageType(ev.target.value);
-  };
-
-  const addpbylink = async (ev) => {
-    ev.preventDefault();
-    const { data: filename } = await axios.post(
-      `http://${apiUrl}/upload-by-link`,
-      { link: plink }
-    );
-    setAddedphotos((prev) => [...prev, filename]);
-    setPlink("");
   };
 
   const uploadPhoto = (ev) => {
