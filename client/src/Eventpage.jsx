@@ -12,8 +12,6 @@ const Eventpage = () => {
   const [addedPhotos, setAddedphotos] = useState([]);
   const [plink, setPlink] = useState("");
 
-  const apiUrl = process.env.REACT_BACKEND_API_URL;
-
   const handleModelChange = (ev) => {
     setPageType(ev.target.value);
   };
@@ -26,9 +24,13 @@ const Eventpage = () => {
       data.append("photo", files[i]);
     }
     axios
-      .post(`http://${apiUrl}/uploads`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(
+        `http://https://kanaiyazhi-admin-panel.onrender.com/uploads`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
       .then((res) => {
         const { data: filenames } = res;
         setAddedphotos((prev) => {
@@ -40,64 +42,90 @@ const Eventpage = () => {
   const addeventModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/kavithai`, data).then(() => {
-      alert("Content added to Kavithai. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/kavithai`, data)
+      .then(() => {
+        alert("Content added to Kavithai. Thank you!");
+        resetForm();
+      });
   };
 
   const addOviyamModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/oviyam`, data).then(() => {
-      alert("Content added to Oviyam. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/oviyam`, data)
+      .then(() => {
+        alert("Content added to Oviyam. Thank you!");
+        resetForm();
+      });
   };
 
   const addsirukadhaiModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/sirukadhai`, data).then(() => {
-      alert("Content added to Sirukadhai. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(
+        `http://https://kanaiyazhi-admin-panel.onrender.com/sirukadhai`,
+        data
+      )
+      .then(() => {
+        alert("Content added to Sirukadhai. Thank you!");
+        resetForm();
+      });
   };
 
   const addputhagamModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/puthaga-vimarsanam`, data).then(() => {
-      alert("Content added to Puthaga-Vimarsanam. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(
+        `http://https://kanaiyazhi-admin-panel.onrender.com/puthaga-vimarsanam`,
+        data
+      )
+      .then(() => {
+        alert("Content added to Puthaga-Vimarsanam. Thank you!");
+        resetForm();
+      });
   };
 
   const addvasanamModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/vasanam`, data).then(() => {
-      alert("Content added to Vasanam. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(`http://https://kanaiyazhi-admin-panel.onrender.com/vasanam`, data)
+      .then(() => {
+        alert("Content added to Vasanam. Thank you!");
+        resetForm();
+      });
   };
 
   const addvidukadhaiModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/vidukadhai`, data).then(() => {
-      alert("Content added to Vidukadhai. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(
+        `http://https://kanaiyazhi-admin-panel.onrender.com/vidukadhai`,
+        data
+      )
+      .then(() => {
+        alert("Content added to Vidukadhai. Thank you!");
+        resetForm();
+      });
   };
 
   const addnaatkurippuModel = async (ev) => {
     ev.preventDefault();
     const data = { title, subtitle, date, authorName, content, addedPhotos };
-    await axios.post(`http://${apiUrl}/naatkurippu`, data).then(() => {
-      alert("Content added to Naatkurippu. Thank you!");
-      resetForm();
-    });
+    await axios
+      .post(
+        `http://https://kanaiyazhi-admin-panel.onrender.com/naatkurippu`,
+        data
+      )
+      .then(() => {
+        alert("Content added to Naatkurippu. Thank you!");
+        resetForm();
+      });
   };
 
   const resetForm = () => {
@@ -456,7 +484,10 @@ const Eventpage = () => {
             addedPhotos.map((link) => (
               <div key={link}>
                 <img
-                  src={`http://${apiUrl}/uploads/` + link}
+                  src={
+                    `http://https://kanaiyazhi-admin-panel.onrender.com/uploads/` +
+                    link
+                  }
                   alt=""
                   className="rounded-xl"
                   width="150px"
