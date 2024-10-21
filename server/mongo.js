@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 mongoose
-  .connect(
-    "mongodb+srv://kidkrrish3:kidkrrish3@tmcluster.wznin.mongodb.net/?retryWrites=true&w=majority&appName=TMCluster"
-  )
+  .connect("mongodb://localhost:27017/")
   .then(() => {
     console.log("database connected...");
   })
